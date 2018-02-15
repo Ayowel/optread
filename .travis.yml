@@ -1,5 +1,5 @@
 language: c
-install: make && make run_tests
+script: make && make run_tests
 matrix:
   include:
     #####################################
