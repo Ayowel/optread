@@ -1,8 +1,5 @@
 language: c
 install: make && make run_tests
-compiler:
-  - clang
-  - gcc
 matrix:
   include:
     #####################################
