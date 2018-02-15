@@ -15,6 +15,7 @@ int main()
 	char **argv = calloc(param_num, sizeof(char*));
 	optread_crawl_state *state = calloc(1, sizeof(optread_crawl_state));
 	int i, len;
+	int cmp_result;
 	argc=param_num;
 
 	/* Set argv from reference (argv_base) */
@@ -33,14 +34,16 @@ int main()
 		{
 			assert(state->type == OPTREAD_TYPE_NO_OPTION);
 			assert(state->option.s == 0);
-			assert(0 == strcmp(state->param, argv[i==0?0:3]));
+			cmp_result = strcmp(state->param, argv[i==0?0:3]);
+			assert(0 == cmp_result);
 		}
 		else
 		{
 			assert(state->type == OPTREAD_TYPE_SHORT_OPTION);
 			/* The correct parameter string is found */
 			assert(state->option.c == argv_base[1][1]);
-			assert(0 == strcmp(state->param, argv_base[2]));
+			cmp_result = strcmp(state->param, argv_base[2]);
+			assert(0 == cmp_result);
 			/* Tell optread_crawl that the argument was used */
 			state->state = OPTREAD_STATE_ARGUMENT_USED;
 		}

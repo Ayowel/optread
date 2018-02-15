@@ -16,6 +16,7 @@ int main()
 	optread_crawl_state *state = calloc(1, sizeof(optread_crawl_state));
 	const int param_num = 4;
 	int i, len;
+	int cmp_result;
 
 	/* Set argv from reference (argv_base) */
 	for(i=0; i<param_num; i++)
@@ -32,7 +33,8 @@ int main()
 		/* The correct option type is returned */
 		assert(state->type == OPTREAD_TYPE_NO_OPTION);
 		/* The correct parameter string is found */
-		assert(0 == strcmp(state->param, argv_base[i]));
+		cmp_result = strcmp(state->param, argv_base[i]);
+		assert(0 == cmp_result);
 		assert(state->option.s == 0);
 		i++;
 	}
