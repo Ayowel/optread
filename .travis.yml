@@ -1,0 +1,182 @@
+language: c
+install: make && make run_tests
+compiler:
+  - clang
+  - gcc
+matrix:
+  include:
+    #####################################
+    # Tests for linux with gcc 4.9 to 7 #
+    #####################################
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-4.9
+      env:
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9"
+    #- os: linux
+    #  addons:
+    #    apt:
+    #      sources:
+    #        - ubuntu-toolchain-r-test
+    #      packages:
+    #        - g++-5
+    #  env:
+    #    - MATRIX_EVAL="CC=gcc-5 && CXX=g+++-5"
+    #- os: linux
+    #  addons:
+    #    apt:
+    #      sources:
+    #        - ubuntu-toolchain-r-test
+    #      packages:
+    #        - g++-6
+    #  env:
+    #    - MATRIX_EVAL="CC=gcc-6 && CXX=g+++-6"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-7
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g+++-7"
+    #######################################
+    # Tests for linux with clang 3.6 to 5 #
+    #######################################
+
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-precise-3.6
+          packages:
+            - clang-3.6
+      env:
+        - MATRIX_EVAL="CC=clang-3.6 && CXX=clang++-3.6"
+
+    # works on Precise and Trusty
+    #- os: linux
+    #  addons:
+    #    apt:
+    #      sources:
+    #        - ubuntu-toolchain-r-test
+    #        - llvm-toolchain-precise-3.7
+    #      packages:
+    #        - clang-3.7
+    #  env:
+    #    - MATRIX_EVAL="CC=clang-3.7 && CXX=clang++-3.7"
+
+    # works on Precise and Trusty
+    #- os: linux
+    #  addons:
+    #    apt:
+    #      sources:
+    #        - ubuntu-toolchain-r-test
+    #        - llvm-toolchain-precise-3.8
+    #      packages:
+    #        - clang-3.8
+    #  env:
+    #    - MATRIX_EVAL="CC=clang-3.8 && CXX=clang++-3.8"
+
+    # works on Trusty
+    #- os: linux
+    #  addons:
+    #    apt:
+    #      sources:
+    #        - llvm-toolchain-trusty-3.9
+    #      packages:
+    #        - clang-3.9
+    #  env:
+    #    - MATRIX_EVAL="CC=clang-3.9 && CXX=clang++-3.9"
+
+    # works on Trusty
+    #- os: linux
+    #  addons:
+    #    apt:
+    #      sources:
+    #        - llvm-toolchain-trusty-4.0
+    #      packages:
+    #        - clang-4.0
+    #  env:
+    #    - MATRIX_EVAL="CC=clang-4.0 && CXX=clang++-4.0"
+
+    # works on Trusty
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-5.0
+          packages:
+            - clang-5.0
+      env:
+        - MATRIX_EVAL="CC=clang-5.0 && CXX=clang++-5.0"
+    ##########################################
+    # Tests for osx with xcode8 gcc 4.9 to 7 #
+    ##########################################
+    - os: osx
+      osx_image: xcode8
+      env:
+        - MATRIX_EVAL="CC=gcc-4.9 && CXX=g+++-4.9"
+    #- os: osx
+    #  osx_image: xcode8
+    #  env:
+    #    - MATRIX_EVAL="CC=gcc-5 && CXX=g+++-5"
+    #- os: osx
+    #  osx_image: xcode8
+    #  env:
+    #    - MATRIX_EVAL="CC=gcc-6 && CXX=g+++-6"
+    - os: osx
+      osx_image: xcode8
+      env:
+        - MATRIX_EVAL="CC=gcc-7 && CXX=g+++-7"
+
+    #####################################
+    # Tests for osx with clang 3.5 to 5 #
+    #####################################
+
+    - os: osx
+      osx_image: xcode6.4 # clang-602.0.53
+      env:
+        - MATRIX_EVAL="CC=clang && CXX=clang++"
+    #- os: osx
+    #  osx_image: xcode7.3 # clang-703.0.31
+    #  env:
+    #    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    #- os: osx
+    #  osx_image: xcode8 # clang-800.0.38
+    #  env:
+    #    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    #- os: osx
+    #  osx_image: xcode8.3 # clang-802.0.42
+    #  env:
+    #    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    #- os: osx
+    #  osx_image: xcode9 # clang-900.0.37
+    #  env:
+    #    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    #- os: osx
+    #  osx_image: xcode9.1 # clang-900.0.38
+    #  env:
+    #    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    #- os: osx
+    #  osx_image: xcode9.2 # clang-900.0.39.2
+    #  env:
+    #    - MATRIX_EVAL="CC=clang && CXX=clang++"
+    - os: osx
+      osx_image: xcode9.3beta # clang-902.0.30
+      env:
+        - MATRIX_EVAL="CC=clang && CXX=clang++"
+
+
+before_install:
+  - eval "${MATRIX_EVAL}"
+
+git:
+  depth: 3
+  submodules: true
+
