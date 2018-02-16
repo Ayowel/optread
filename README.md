@@ -1,4 +1,4 @@
-# OPTREAD ![Issues](https://img.shields.io/github/issues/Ayowel/travis-test.svg) ![License](https://img.shields.io/github/license/Ayowel/optread.svg) ![Status](https://img.shields.io/badge/status-in%20development-red.svg) ![Travis](https://travis-ci.org/Ayowel/optread.svg?branch=master)
+# OPTREAD ![Issues](https://img.shields.io/github/issues/Ayowel/optread.svg) ![License](https://img.shields.io/github/license/Ayowel/optread.svg) ![Status](https://img.shields.io/badge/status-in%20development-red.svg) ![Travis](https://travis-ci.org/Ayowel/optread.svg?branch=master)
 
 ## Description
 
@@ -26,8 +26,8 @@ int main(int argc, char** argv)
        * Possible values:
        * * OPTREAD_TYPE_NO_PARAMETER, should not appear before end of loop
        * * OPTREAD_TYPE_NO_OPTION, if only a parameter was found (state->param)
-       * * OPTREAD_TYPE_SHORT_OPTION, if the option is a character (use state->option.c, state->param might equal 0
-       * * 
+       * * OPTREAD_TYPE_SHORT_OPTION, if the option is short (use state->option.c, state->param might equal 0)
+       * * OPTREAD_TYPE_LONG_OPTION, if the option is long (use state->option.s, state->param might equal 0)
        */
       case OPTREAD_TYPE_NO_OPTION:
         printf("Received parameter %s\n", state->param);
@@ -121,5 +121,6 @@ Check out the TODO list hereafter, that way you'll know what is to come / get id
     - Takes argc, argv and a configuration as argument
     - configuration should be set with lists of parameters and callback functions
     - Callback function prototype: `char callback(uint8_t opt_type, optread_optname option, char* param, void* context)`
-- [ ] Enything you feel is usefull, really.
+- [ ] Add support for "windows" compilation & run in travis (wine)
+- [ ] Anything you feel is usefull, really.
 
