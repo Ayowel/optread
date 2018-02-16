@@ -43,7 +43,7 @@ all: $(LIB_DIR)/optread.o $(TEST_LIST)
 .PHONY: clean mrproper run_tests lib_folder build_folder
 
 run_tests:
-	for i in `find build -name "*_test*" -executable`; do echo "Running $$i"; $$i; retval=$$?; if [ $$retval -ne 0 ]; then echo "	Return value error: $$retval" >&2; fi done
+	for i in `find build -name "*_test*"`; do if [ -x "$$i" ]; then echo "Running $$i"; $$i; retval=$$?; if [ $$retval -ne 0 ]; then echo "	Return value error: $$retval" >&2; fi fi done
 
 clean:
 	rm -rf `find . -name "*.o"`
