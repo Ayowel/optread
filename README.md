@@ -108,6 +108,9 @@ Check out the TODO list hereafter, that way you'll know what is to come / get id
 - [X] Handle end of options string ("--")
     - Allow the disabling of the option if OPTREAD\_DISABLE\_OPTIONS\_OPTION\_DISABLE is defined (or another somewhat meaningful name)
     - Any subsequent option should be treated as a regular argument
+- [ ] Allow the use of empty long & short options
+    - Allow the disabling for either of them independantly
+    - Give priority to option disabling if it might collide with one of the options
 - [ ] Add tests with other configurations (continuous)
     - Be it in terms of parameters of defines at build
 - [ ] Improve the testing process
