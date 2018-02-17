@@ -100,7 +100,7 @@ Check out the TODO list hereafter, that way you'll know what is to come / get id
 
 ## TODO
 
-- [ ] Set param to 0 if already used in short option chaining
+- [X] Set param to 0 if already used in short option chaining
     - Prevents the use of the same argument in different contexts due to a user error
 - [ ] Check that optread.c builds to optread.o with all accepted configurations
     - Self-explanatory
