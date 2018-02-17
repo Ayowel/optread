@@ -38,6 +38,11 @@ char optread_crawl(int argc, char** argv, struct optread_crawl_state* state)
 		}
 		else
 		{
+			if(state->state & OPTREAD_STATE_ARGUMENT_USED)
+			{
+				state->param = 0;
+				state->state &= ~OPTREAD_STATE_ARGUMENT_USED;
+			}
 			state->option.c = argv[state->pos.index][state->pos.subindex];
 			state->pos.subindex++;
 			state->state = OPTREAD_STATE_DEFAULT;
