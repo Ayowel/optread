@@ -72,6 +72,8 @@ The code makes use of defines to generate the minimum amount of code necessary. 
 
 * **OPTREAD\_SHORT\_PREFIX** String used to detect a short option, defaults to "-"
 * **OPTREAD\_LONG\_PREFIX** String used to detect a long option, defaults to "--"
+* **OPTREAD\_DISABLE\_OPTIONS\_OPTION** Option string used to treat subsequent options as regular parameters, defaults to "--"
+* **OPTREAD\_DISABLE\_OPTIONS\_OPTION\_DISABLE** Disables the OPTREAD\_DISABLE\_OPTIONS\_OPTION option string
 
 ![Caution](https://img.shields.io/badge/!-caution-red.svg) Use with care, Changing/creating those defines MIGHT work but is by no mean guaranteed as of now. Using those might cause compile-time and/or runtime errors.
 
@@ -103,7 +105,7 @@ Check out the TODO list hereafter, that way you'll know what is to come / get id
 - [ ] Check that optread.c builds to optread.o with all accepted configurations
     - Self-explanatory
     - Minus defines that provide strings. It requires testing, but there is no need to test all possible strings: we still need the build to end.
-- [ ] Handle end of options string ("--")
+- [X] Handle end of options string ("--")
     - Allow the disabling of the option if OPTREAD\_DISABLE\_OPTIONS\_OPTION\_DISABLE is defined (or another somewhat meaningful name)
     - Any subsequent option should be treated as a regular argument
 - [ ] Add tests with other configurations (continuous)
