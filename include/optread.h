@@ -73,6 +73,16 @@
 	#endif
 #endif
 
+#if defined(OPTREAD_DOCUMENT) || !defined(OPTREAD_DISABLE_OPTIONS_OPTION_DISABLE)
+	#ifndef OPTREAD_DISABLE_OPTIONS_OPTION
+		/*!
+		 * @brief String used to treat following options as parameters
+		 * @ingroup USER_ACCESSIBLE
+		 */
+		#define OPTREAD_DISABLE_OPTIONS_OPTION "--"
+	#endif
+#endif
+
 #ifndef OPTREAD_SHORT_OPTION_CHAINING_DISABLE
 	#define OPTREAD_SHORT_OPTION_CHAINING
 #endif
@@ -91,6 +101,8 @@
 #define OPTREAD_STATE_ARGUMENT_USED 2
 /*! @brief Internal use. Indicates that the the option/value pair we're working with were part of the same argument (e.g.: gcc -std=c++11) */
 #define OPTREAD_STATE_INNER_CHAINING 4
+/*! @brief Internal use. Indicates that options should be treated as regular parameters */
+#define OPTREAD_STATE_DISABLE_OPTIONS 8
 /*! @brief Internal use. Default state */
 #define OPTREAD_STATE_DEFAULT 0
 /* End */
@@ -215,4 +227,3 @@ typedef struct optread_crawl_state {
 char optread_crawl(int argc, char** argv, struct optread_crawl_state* state);
 
 #endif
-

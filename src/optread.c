@@ -63,6 +63,23 @@ char optread_crawl(int argc, char** argv, struct optread_crawl_state* state)
 	}
 
 	length = strlen(argv[state->pos.index]);
+	#ifndef OPTREAD_DISABLE_OPTIONS_OPTION_DISABLE
+	if(! (state->pos.info & OPTREAD_STATE_DISABLE_OPTIONS))
+	{
+		if(length == sizeof(OPTREAD_DISABLE_OPTIONS_OPTION)-1
+			&& 0 == memcmp(argv[state->pos.index]
+				, OPTREAD_DISABLE_OPTIONS_OPTION
+				, sizeof(OPTREAD_DISABLE_OPTIONS_OPTION)-1))
+		{
+			state->pos.info |= OPTREAD_STATE_DISABLE_OPTIONS;
+			state->type = OPTREAD_TYPE_NO_PARAM;
+			state->param = 0;
+			state->option.s = argv[state->pos.index];
+			return 1;
+		}
+	#else /* test for ifndef only once */
+	{
+	#endif
 
 	#ifndef OPTREAD_LONG_DISABLE
 	if (length > sizeof(OPTREAD_LONG_PREFIX)-1
@@ -116,6 +133,7 @@ char optread_crawl(int argc, char** argv, struct optread_crawl_state* state)
 		return 1;
 	}
 	#endif
+	}
 
 	/* Return as regular parameter if nothing was found */
 	state->type = OPTREAD_TYPE_NO_OPTION;
@@ -125,4 +143,3 @@ char optread_crawl(int argc, char** argv, struct optread_crawl_state* state)
 	state->pos.index++;
 	return 1;
 }
-
